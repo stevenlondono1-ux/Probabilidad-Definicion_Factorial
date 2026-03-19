@@ -192,7 +192,7 @@
         </div>
     </div>
 
-    <!-- FOOTER AÑADIDO - SOLO ESTO ES NUEVO -->
+    <!-- ===== SOLO AÑADÍ ESTE FOOTER, NADA MÁS FUE MODIFICADO ===== -->
     <footer class="footer-udea">
         <div class="footer-box">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Escudo-UdeA.svg/500px-Escudo-UdeA.svg.png" alt="UdeA">
@@ -206,21 +206,10 @@
         let puntos = 0;
         let preguntasActuales = [];
 
-        // FUNCIÓN AÑADIDA - ESTO ES LO ÚNICO NUEVO EN EL SCRIPT
         function cambiarSesion(n) {
-            // Ocultar todas las sesiones
-            document.getElementById('sesion1').style.display = 'none';
-            document.getElementById('sesion2').style.display = 'none';
-            document.getElementById('sesion3').style.display = 'none';
-            document.getElementById('sesion4').style.display = 'none';
-            
-            // Mostrar la sesión seleccionada
-            document.getElementById('sesion' + n).style.display = 'block';
-            
-            // Si es la sesión de juegos, generar ejercicios
-            if(n === 4) {
-                generarEjerciciosAleatorios();
-            }
+            for(let i=1; i<=4; i++) document.getElementById('sesion'+i).style.display = 'none';
+            document.getElementById('sesion'+n).style.display = 'block';
+            if(n === 4) generarEjerciciosAleatorios();
         }
 
         function ejecutarCalculo() {
@@ -240,7 +229,7 @@
             let container = document.getElementById('ejercicios');
             container.innerHTML = "";
             let shuffle = [...banco].sort(() => 0.5 - Math.random());
-            preguntasActuales = shuffle.slice(0, 5); // 5 preguntas por ronda para agilizar
+            preguntasActuales = shuffle.slice(0, 5);
             
             preguntasActuales.forEach((p, i) => {
                 container.innerHTML += `<div style='margin-bottom:10px;'>${p.q} = <input type='number' id='ans${i}' style='width:80px'> 
@@ -276,7 +265,6 @@
             doc.save("Certificado_UdeA.pdf");
         }
 
-        // Partículas
         function createParticles() {
             const container = document.getElementById('particles');
             for(let i=0; i<15; i++) {
